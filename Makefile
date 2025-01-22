@@ -7,8 +7,5 @@ build:
 	pnpm install
 	pnpm run build
 
-image: build
-	cp .env deploy/
-	rm -rf deploy/dist
-	cp -r dist deploy/
-	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) deploy
+image:
+	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) -f deploy/selfhost.Dockerfile .
